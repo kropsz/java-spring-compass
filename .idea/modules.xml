@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/java-spring-compass.iml" filepath="$PROJECT_DIR$/.idea/java-spring-compass.iml" />
+      <module fileurl="file://$PROJECT_DIR$/park.api/park.api.iml" filepath="$PROJECT_DIR$/park.api/park.api.iml" />
     </modules>
   </component>
 </project>

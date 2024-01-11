@@ -11,10 +11,9 @@ import java.util.stream.Collectors;
 
 public class UsuarioMapper {
 
-    public static Usuario toUsuario(UsuarioCreateDto createDto){
+    public static Usuario toUsuario(UsuarioCreateDto createDto) {
         return new ModelMapper().map(createDto, Usuario.class);
     }
-
 
     public static UsuarioResponseDto toDto(Usuario usuario) {
         String role = usuario.getRole().name().substring("ROLE_".length());

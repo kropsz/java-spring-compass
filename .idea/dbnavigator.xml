@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -20,13 +20,19 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="88c0da95-968c-4958-87cf-6fcee9b3369e" object-ref="schemas/park_api/tables/tb_usuarios" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="88c0da95-968c-4958-87cf-6fcee9b3369e" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="88c0da95-968c-4958-87cf-6fcee9b3369e" dataset="park_api.tb_usuarios" active-filter-id="" />
+    <filter-actions connection-id="88c0da95-968c-4958-87cf-6fcee9b3369e" dataset="park_api.tb_usuarios" active-filter-id="">
+      <filter id="9c996807-5ee5-48e1-9ad2-8ff9c7b51a37" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />

@@ -20,9 +20,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="88c0da95-968c-4958-87cf-6fcee9b3369e" object-ref="schemas/park_api/tables/tb_usuarios" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="88c0da95-968c-4958-87cf-6fcee9b3369e" />

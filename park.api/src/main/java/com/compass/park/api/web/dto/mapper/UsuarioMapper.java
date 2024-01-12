@@ -1,7 +1,7 @@
-package com.compass.park.api.dto.mapper;
+package com.compass.park.api.web.dto.mapper;
 
-import com.compass.park.api.dto.UsuarioCreateDto;
-import com.compass.park.api.dto.UsuarioResponseDto;
+import com.compass.park.api.web.dto.UsuarioCreateDto;
+import com.compass.park.api.web.dto.UsuarioResponseDto;
 import com.compass.park.api.entity.Usuario;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;

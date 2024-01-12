@@ -1,4 +1,4 @@
-package com.compass.park.api.dto;
+package com.compass.park.api.web.dto;
 
 import lombok.*;
 

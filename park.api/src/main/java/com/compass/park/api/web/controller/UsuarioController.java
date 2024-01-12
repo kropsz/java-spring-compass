@@ -1,9 +1,9 @@
-package com.compass.park.api.controller;
+package com.compass.park.api.web.controller;
 
-import com.compass.park.api.dto.UsuarioCreateDto;
-import com.compass.park.api.dto.UsuarioResponseDto;
-import com.compass.park.api.dto.UsuarioSenhaDto;
-import com.compass.park.api.dto.mapper.UsuarioMapper;
+import com.compass.park.api.web.dto.UsuarioCreateDto;
+import com.compass.park.api.web.dto.UsuarioResponseDto;
+import com.compass.park.api.web.dto.UsuarioSenhaDto;
+import com.compass.park.api.web.dto.mapper.UsuarioMapper;
 import com.compass.park.api.entity.Usuario;
 import com.compass.park.api.service.UsuarioService;
 import jakarta.validation.Valid;

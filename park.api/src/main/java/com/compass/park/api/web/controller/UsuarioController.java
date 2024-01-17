@@ -72,7 +72,7 @@ public class UsuarioController {
     @Operation(summary = "Atualaizar Senha", description = "Requisição exige um Bearer Token, Acesso restrito a ADMIN | CLIENTE",
             security = @SecurityRequirement(name = "security"),
             responses = {
-                    @ApiResponse(responseCode = "204",X
+                    @ApiResponse(responseCode = "204",
                             description = "Senha atualiazada com sucesso",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = Void.class))),
                     @ApiResponse(responseCode = "400",

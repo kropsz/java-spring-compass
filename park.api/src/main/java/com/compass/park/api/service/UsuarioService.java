@@ -6,31 +6,33 @@ import com.compass.park.api.exception.PasswordInvalidException;
 import com.compass.park.api.exception.UsernameUniqueViolation;
 import com.compass.park.api.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
-
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public Usuario salvar(Usuario usuario) {
         try {
+            usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
             return usuarioRepository.save(usuario);
-        }catch (org.springframework.dao.DataIntegrityViolationException ex){
-             throw new UsernameUniqueViolation(String.format("Username {%s} ja cadastrado", usuario.getUsername()));
+        } catch (org.springframework.dao.DataIntegrityViolationException ex) {
+            throw new UsernameUniqueViolation(String.format("Username '%s' já cadastrado", usuario.getUsername()));
         }
     }
 
     @Transactional(readOnly = true)
     public Usuario buscarPorId(Long id) {
         return usuarioRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException(String.format("Usuario id -> %s não encontrado", id))
+                () -> new EntityNotFoundException(String.format("Usuário id=%s não encontrado", id))
         );
     }
 
@@ -41,16 +43,28 @@ public class UsuarioService {
         }
 
         Usuario user = buscarPorId(id);
-        if (!user.getPassword().equals(senhaAtual)) {
+        if (!passwordEncoder.matches(senhaAtual, user.getPassword())) {
             throw new PasswordInvalidException("Sua senha não confere.");
         }
 
-        user.setPassword(novaSenha);
+        user.setPassword(passwordEncoder.encode(novaSenha));
         return user;
     }
 
     @Transactional(readOnly = true)
     public List<Usuario> buscarTodos() {
         return usuarioRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Usuario buscarPorUsername(String username) {
+        return usuarioRepository.findByUsername(username).orElseThrow(
+                () -> new EntityNotFoundException(String.format("Usuario com '%s' não encontrado", username))
+        );
+    }
+
+    @Transactional(readOnly = true)
+    public Usuario.Role buscarRolePorUsername(String username) {
+        return usuarioRepository.findRoleByUsername(username);
     }
 }

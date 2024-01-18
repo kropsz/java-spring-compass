@@ -1,7 +1,10 @@
 package com.compass.park.api.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -12,25 +15,21 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Table(name = "tb_clientes")
 @Entity
-@Table(name = "tb_usuarios")
-@Getter
-@Setter
-@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Usuario implements Serializable {
-
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-    @Column(name = "username", nullable = false, unique = true, length = 100)
-    private String username;
-    @Column(name = "password", nullable = false, length = 200)
-    private String password;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false, length = 25)
-    private Role role = Role.ROLE_CLIENTE;
+    @Column(name = "nome", nullable = false, length = 100)
+    private String nome;
+    @Column(name = "cpf", nullable = false, unique = true, length = 11)
+    private String cpf;
+    @OneToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
 
     @CreatedDate
     @Column(name = "data_criacao")
@@ -45,27 +44,15 @@ public class Usuario implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    public enum Role{
-        ROLE_ADMIN, ROLE_CLIENTE
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id);
+        if (!(o instanceof Cliente cliente)) return false;
+        return Objects.equals(id, cliente.id);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                '}';
     }
 }

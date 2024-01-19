@@ -1,9 +1,6 @@
 package com.compass.park.api.web.exception;
 
-import com.compass.park.api.exception.CpfUniqueViolationException;
-import com.compass.park.api.exception.EntityNotFoundException;
-import com.compass.park.api.exception.PasswordInvalidException;
-import com.compass.park.api.exception.UsernameUniqueViolation;
+import com.compass.park.api.exception.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -29,7 +26,7 @@ public class ApiExceptionHanlder {
             .body(new ErrorMessage(request, HttpStatus.UNPROCESSABLE_ENTITY, "Campo(s) invalido(s)",result));
     }
 
-    @ExceptionHandler({UsernameUniqueViolation.class, CpfUniqueViolationException.class})
+    @ExceptionHandler({UsernameUniqueViolation.class, CpfUniqueViolationException.class, CodigoUniqueViolationException.class})
     public ResponseEntity<ErrorMessage> uniqueViolationException(RuntimeException ex, HttpServletRequest request){
         log.error("Api Error - ", ex);
         return ResponseEntity
